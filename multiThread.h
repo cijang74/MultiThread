@@ -26,6 +26,8 @@ static inline int pthread_cond_destroy(pthread_cond_t*c){return 0;}
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
 
 // #define MAX_PLAYERS 4 // 최대 플레이어 수 일단 4명
 // #define ACTION_QUEUE_SIZE 20 // 액션 큐 개수
@@ -34,12 +36,12 @@ static inline int pthread_cond_destroy(pthread_cond_t*c){return 0;}
 // typedef enum { ATTACK, ITEM, DEFFENSE, BOSS_ATTACK } ActionType;
 // typedef enum { HEAL, UPATK } ItemType;
 
-// typedef struct Action // 액션 구조체
-// {
-//     bool is_player; // 현재 액션을 취하는 객체가 플레이어 or 보스
-//     ActionType type; // 어떤 액션을 취할것인지 정보를 담은 구조체
-//     int player_id; // 어떤 플레이어가 액션을 취하는지에 대한 정보가 담긴 변수
-// } Action;
+typedef struct Action // 액션 구조체
+{
+    bool is_player; // 현재 액션을 취하는 객체가 플레이어 or 보스
+    ActionType type; // 어떤 액션을 취할것인지 정보를 담은 구조체
+    int player_id; // 어떤 플레이어가 액션을 취하는지에 대한 정보가 담긴 변수
+} Action;
 
 // typedef struct ActionQueue
 // {
@@ -49,14 +51,14 @@ static inline int pthread_cond_destroy(pthread_cond_t*c){return 0;}
 //     pthread_cond_t  not_empty;
 // } ActionQueue;
 
-// typedef struct Player
-// {
-//     int id;
-//     int hp;
-//     int atk;
-//     bool is_myturn;
-//     bool is_dead;
-// } Player;
+typedef struct Player
+{
+    int id;
+    int hp;
+    int atk;
+    bool is_myturn;
+    bool is_dead;
+} Player;
 
 // typedef struct Item
 // {
@@ -92,6 +94,6 @@ static inline int pthread_cond_destroy(pthread_cond_t*c){return 0;}
 // void* calc_thread(void *arg);
 
 // 함수 선언
-void run_threads(void);
+void run_game(Player player);
 
 #endif // MULTITHREAD_H
