@@ -3,5 +3,6 @@
 
 int main() 
 {
+    run_threads();
     return 0;
 }
