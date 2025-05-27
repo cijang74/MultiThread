@@ -1,6 +1,7 @@
+// main.c
 #include "multiThread.h"
 
-int main() {
-    run_threads();
+int main() 
+{
     return 0;
 }
